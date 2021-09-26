@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @MappedSuperclass
 public class CommonEntity implements Serializable {
@@ -25,6 +29,8 @@ public class CommonEntity implements Serializable {
 	private String creator;
 	
 	@Column(name = "create_time")
+	@JsonFormat(pattern = "yyyy/MM/dd hh:mm:ss", timezone = "GMT+8")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date createTime;
 
 
@@ -48,9 +54,6 @@ public class CommonEntity implements Serializable {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
 	
 	@PrePersist
 	public void setCreateInfo() {

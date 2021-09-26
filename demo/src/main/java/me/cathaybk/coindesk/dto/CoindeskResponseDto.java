@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class CoindeskResponseDto {
 
 
-	@JsonFormat(pattern = "yyyy/MM/dd hh:mm:ss")
+	@JsonFormat(pattern = "yyyy/MM/dd hh:mm:ss", timezone = "GMT+8")
 	private Date updateTime;
 	
 	private List<Currency> currencies;

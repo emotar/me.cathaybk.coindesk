@@ -13,7 +13,7 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class JavascirptMessageConverter extends AbstractHttpMessageConverter {
+public class JavascirptMessageConverter extends AbstractHttpMessageConverter<Object> {
 
 	private ObjectMapper objectMapper = new ObjectMapper();
 
@@ -22,12 +22,12 @@ public class JavascirptMessageConverter extends AbstractHttpMessageConverter {
 	}
 
 	@Override
-	protected boolean supports(Class clazz) {
+	protected boolean supports(Class<?> clazz) {
 		return true;
 	}
 
 	@Override
-	protected Object readInternal(Class clazz, HttpInputMessage inputMessage)
+	protected Object readInternal(Class<?> clazz, HttpInputMessage inputMessage)
 			throws IOException, HttpMessageNotReadableException {
 		String body = IOUtils.toString(inputMessage.getBody(), Charset.forName("utf-8"));
 		return this.objectMapper.readValue(body, clazz);
@@ -36,7 +36,7 @@ public class JavascirptMessageConverter extends AbstractHttpMessageConverter {
 	@Override
 	protected void writeInternal(Object t, HttpOutputMessage outputMessage)
 			throws IOException, HttpMessageNotWritableException {
-		// TODO Auto-generated method stub
+
 
 	}
 

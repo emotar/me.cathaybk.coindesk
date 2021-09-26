@@ -20,6 +20,7 @@ import me.cathaybk.coindesk.repository.CurrencyRepository;
 @Transactional
 public class CurrencyService {
 
+	@Autowired
 	private CurrencyRepository currencyRepository;
 
 	public CurrencyEntity dtoToEntity(CurrencyResponseDto dto) {
@@ -29,10 +30,7 @@ public class CurrencyService {
 		return entity;
 	}
 	
-	@Autowired
-	public CurrencyService(CurrencyRepository currencyRepository) {
-		this.currencyRepository = currencyRepository;
-	}
+
 
 	public Optional<CurrencyEntity> find(String code) {
 		return this.currencyRepository.findByCode(code);
